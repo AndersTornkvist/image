@@ -63,6 +63,7 @@ import Uploader from './uploader';
  * @property {object} [uploader] - optional custom uploader
  * @property {function(File): Promise.<UploadResponseFormat>} [uploader.uploadByFile] - method that upload image by File
  * @property {function(string): Promise.<UploadResponseFormat>} [uploader.uploadByUrl] - method that upload image by URL
+ * @property {boolean} noCaption - to remove caption field
  */
 
 /**
@@ -110,6 +111,7 @@ export default class ImageTool {
       captionPlaceholder: config.captionPlaceholder || 'Caption',
       buttonContent: config.buttonContent || '',
       uploader: config.uploader || undefined,
+      noCaption: config.noCaption || false,
     };
 
     /**
@@ -172,7 +174,9 @@ export default class ImageTool {
   save() {
     const caption = this.ui.nodes.caption;
 
-    this._data.caption = caption.innerHTML;
+    if (caption) {
+      this._data.caption = caption.innerHTML;
+    }
 
     return this.data;
   }

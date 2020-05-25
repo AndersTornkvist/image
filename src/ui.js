@@ -23,9 +23,9 @@ export default class Ui {
       fileButton: this.createFileButton(),
       imageEl: undefined,
       imagePreloader: make('div', this.CSS.imagePreloader),
-      caption: make('div', [this.CSS.input, this.CSS.caption], {
+      caption: (!this.config.noCaption) ? make('div', [this.CSS.input, this.CSS.caption], {
         contentEditable: true,
-      }),
+      }) : null,
     };
 
     /**
@@ -38,10 +38,12 @@ export default class Ui {
      *    <select-file-button />
      *  </wrapper>
      */
-    this.nodes.caption.dataset.placeholder = this.config.captionPlaceholder;
     this.nodes.imageContainer.appendChild(this.nodes.imagePreloader);
     this.nodes.wrapper.appendChild(this.nodes.imageContainer);
-    this.nodes.wrapper.appendChild(this.nodes.caption);
+    if (!this.config.noCaption) {
+      this.nodes.caption.dataset.placeholder = this.config.captionPlaceholder;
+      this.nodes.wrapper.appendChild(this.nodes.caption);
+    }
     this.nodes.wrapper.appendChild(this.nodes.fileButton);
   }
 

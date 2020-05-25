@@ -92,6 +92,7 @@ Image Tool supports these configuration parameters:
 | captionPlaceholder | `string` | (default: `Caption`) Placeholder for Caption input |
 | buttonContent | `string` | Allows to override HTML content of «Select file» button |
 | uploader | `{{uploadByFile: function, uploadByUrl: function}}` | Optional custom uploading methods. See details below. |
+| noCaption | `boolean` | (default: `false`) No caption field. |
 
 Note that if you don't implement your custom uploader methods, the `endpoints` param is required. 
 
